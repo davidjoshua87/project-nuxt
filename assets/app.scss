@@ -1,0 +1,16 @@
+@tailwind utilities;
+@tailwind components;
+
+@layer components {
+    .btn {
+        &__error {
+            @apply mt-2 p-5 text-white bg-blue-500 duration-500
+        }
+    }
+
+    .input {
+        &-control {
+            @apply p-1 border-solid border-2 border-black
+        }
+    }
+}

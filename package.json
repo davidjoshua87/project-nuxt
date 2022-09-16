@@ -1,0 +1,33 @@
+{
+  "name": "project-nuxt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "core-js": "^3.19.3",
+    "node-fetch": "^2.6.1",
+    "nuxt": "^2.15.3",
+    "vue": "^2.6.14",
+    "vue-server-renderer": "^2.6.14",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^4.2.1",
+    "postcss": "^8.4.4",
+    "sass": "^1.54.3",
+    "sass-loader": "^10.1.1",
+    "webpack": "^4.46.0"
+  },
+  "jshintConfig": {
+    "esversion": 8,
+    "strict": "implied",
+    "devel": true,
+    "node": true,
+    "globals": {}
+  }
+}
