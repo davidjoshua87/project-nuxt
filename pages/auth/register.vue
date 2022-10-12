@@ -42,37 +42,84 @@
   </div>
 </template>
 <script>
-  name: 'Register'
-  export default {
-    head() {
-      return {
-        title: "Register To NuxtStagram",
-      };
-    },
-    data() {
-      return {
-        user: {
-          name: "",
-          password: "",
-          userImage: "",
-          userId: "123",
+import { unWrap } from '../../utils/fetchUtils';
+import { v4 as uuidv4 } from "uuid";
+
+export default {
+  head() {
+    return {
+      title: "Register To NuxtStagram",
+    };
+  },
+  data() {
+    return {
+      user: {
+        name: "",
+        password: "",
+        userImage: "",
+        userId: uuidv4(),
+      },
+      image: null,
+    };
+  },
+  methods: {
+        async submitRegister() {
+            try {
+                const respUser = await unWrap(await fetch('/api/user/register', {
+                    method: 'POST',
+                    body: JSON.stringify(this.user),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }));
+
+                const options = {
+                    timestamp: Date.now(),
+                    public_id: this.user.userImage
+                }
+
+                const response = await unWrap(await fetch("/api/cloudinary/signature", {
+                    method: "POST",
+                    body: JSON.stringify(options),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }));
+
+                const signature = response.json.signature;
+
+                const readData = (fileObj) => new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.readAsDataURL(fileObj);
+                });
+
+                const data = await readData(this.image);
+
+                const upload = await this.$cloudinary.upload(data, {
+                    ...options,
+                    apiKey: this.$config.cloudinary.apiKey,
+                    signature
+                });
+
+                if(upload && respUser){
+                    alert("you already registered")
+                    this.$router.push("/auth/login");
+                }
+
+            } catch (error) {
+                console.error(error)
+            }
         },
-        image: null,
-      };
-    },
-    methods: {
-          async submitRegister() {
-            alert('register!')
-          },
-          async uploadFile(e) {
-              const file = e.target.files[0];
-              if (!file) {
-                  return;
-              }
-              const filename = file.name.split(".").slice(0, -1).join(".") + Date.now();
-              this.user.userImage = filename;
-              this.image = file;
-          }
-      }
-  };
+        async uploadFile(e) {
+            const file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            const filename = file.name.split(".").slice(0, -1).join(".") + Date.now();
+            this.user.userImage = filename;
+            this.image = file;
+        }
+    }
+};
 </script>

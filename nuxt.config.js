@@ -28,24 +28,49 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
-    "@nuxtjs/tailwindcss",
+    '@nuxt/image',
+    '@nuxtjs/tailwindcss',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    "~/modules/algolia",
+    "~/modules/cloudinary",
+    "@nuxtjs/cloudinary"
+  ],
+
+  cloudinary: {
+    cloundName: process.env.CLOUDINARY_NAME
+  },
+
+  image: {
+    cloudinary: {
+      baseUrl: process.env.CLOUDINARY_URL
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   publicRuntimeConfig: {
+    auth :{
+      cookieName: "idToken"
+    },
     algolia: {
       appId: process.env.ALGOLIA_APP_ID,
       key: process.env.ALGOLIA_TOKEN_GENERAL,
     },
+    cloudinary: {
+      apiKey: process.env.CLOUDINARY_KEY
+    }
   },
   privateRuntimeConfig: {
     algolia: {
       appId: process.env.ALGOLIA_APP_ID,
       key: process.env.ALGOLIA_TOKEN_ALL,
     },
+    cloudinary: {
+      appSecret: process.env.CLOUDINARY_SECRET,
+      key: process.env.CLOUDINARY_KEY,
+    }
   },
 };
