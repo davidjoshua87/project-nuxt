@@ -15,7 +15,7 @@
       <div class="flex flex-col gap-2">
         <input
           type="file"
-          accept=".jpeg, .jpg, image/jpeg"
+          accept=".jpeg, .jpg, image/jpeg, .png"
           @change="uploadFile"
         />
         <input
@@ -48,7 +48,7 @@ import { v4 as uuidv4 } from "uuid";
 export default {
   head() {
     return {
-      title: "Register To NuxtStagram",
+      title: "Register To Instagram Clone",
     };
   },
   data() {

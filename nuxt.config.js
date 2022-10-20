@@ -40,37 +40,37 @@ export default {
   ],
 
   cloudinary: {
-    cloundName: process.env.CLOUDINARY_NAME
+    cloudName: process.env.CLOUDINARY_NAME
   },
 
-  image: {
-    cloudinary: {
-      baseUrl: process.env.CLOUDINARY_URL
+  image:{
+    cloudinary : {
+      baseURL: process.env.CLOUDINARY_URL
     }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  publicRuntimeConfig: {
+  publicRuntimeConfig:{
     auth :{
       cookieName: "idToken"
     },
-    algolia: {
+    algolia:{
       appId: process.env.ALGOLIA_APP_ID,
-      key: process.env.ALGOLIA_TOKEN_GENERAL,
+      key: process.env.ALGOLIA_TOKEN_GENERAL
     },
     cloudinary: {
       apiKey: process.env.CLOUDINARY_KEY
     }
   },
   privateRuntimeConfig: {
-    algolia: {
+    algolia:{
       appId: process.env.ALGOLIA_APP_ID,
-      key: process.env.ALGOLIA_TOKEN_ALL,
+      key: process.env.ALGOLIA_TOKEN_ALL
     },
     cloudinary: {
-      appSecret: process.env.CLOUDINARY_SECRET,
-      key: process.env.CLOUDINARY_KEY,
+      apiSecret: process.env.CLOUDINARY_SECRET,
+      key: process.env.CLOUDINARY_KEY
     }
   },
 };

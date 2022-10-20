@@ -2,15 +2,31 @@
 @tailwind components;
 
 @layer components {
-    .btn {
-        &__error {
-            @apply mt-2 p-5 text-white bg-blue-500 duration-500
-        }
+    .btn{
+      @apply  p-3 text-white hover:opacity-75 bg-gray-400;
+      &-primary{
+        @apply bg-blue-500;
+      }
+    }
+    .form{
+      &-control{
+        @apply p-5 border-solid border-2 border-black
+      }
+    }
+    .input{
+      &-control{
+        @apply p-1 border-solid border-2 border-black
+      }
     }
 
-    .input {
-        &-control {
-            @apply p-1 border-solid border-2 border-black
-        }
+    .tab-item{
+      @apply hover:text-white hover:bg-black px-3 rounded-full border-2 border-solid border-black;
+      &.--active{
+        @apply text-white bg-black;
+      }
     }
-}
+
+    .card-description{
+      @apply mt-5 px-2 py-4 bg-white text-black w-full h-auto border-solid border-black shadow-lg;
+    }
+  }

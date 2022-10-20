@@ -1,6 +1,3 @@
-
-
-
 import userRouter from "./routes/user"
 import getApis from "./apis"
 import bodyParser from "body-parser"

@@ -6,15 +6,12 @@ export default function() {
     this.nuxt.hook("render:setupMiddleware", (app) => {
         app.use("/api/cloudinary/signature", setSignature)
     });
-    
+
     function setSignature(req, res) {
         try {
             const sha1 = createHash("sha1");
             const payload = [];
 
-            console.log({
-                body: req.body,
-            })
             Object.keys(req.body).forEach(key => {
                 payload.push(`${key}=${req.body[key]}`);
             });
