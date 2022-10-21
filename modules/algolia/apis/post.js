@@ -11,9 +11,9 @@ export default function (algoliaConfig) {
   const headers = getHeaders(algoliaConfig);
 
   return {
-    create: async (payload) => {
+    async create(payload) {
       try {
-        return unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/users`, {
+        return unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/posts`, {
           headers,
           method: "POST",
           body: JSON.stringify(payload)
@@ -22,22 +22,13 @@ export default function (algoliaConfig) {
         return getErrorResponse(error)
       }
     },
-    async getAuthUser(req) {
+    async update(payload) {
       try {
-        const user = unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/users/query`, {
+        return unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/posts/${payload.postId}`, {
           headers,
-          method: "POST",
-          body: JSON.stringify({
-            facetFilters: [
-              [
-                `name:${req.name}`,
-                `password:${req.password}`
-              ]
-            ]
-          })
+          method: "PUT",
+          body: JSON.stringify(payload)
         }))
-
-        return user;
       } catch (error) {
         return getErrorResponse(error)
       }

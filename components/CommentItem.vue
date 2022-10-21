@@ -1,7 +1,7 @@
 <template>
   <div class="flex p-2 gap-2 items-center w-full">
       <div>
-          <img :src="comment.profilePicture" class="max-w-full rounded-full" width="52" height="52" alt="user picture comment"/>
+          <nuxt-img :src="comment.profilePicture" class="max-w-full rounded-full" width="52" height="52" alt="user picture comment" provider="cloudinary"/>
       </div>
       <div class="flex-1">
           {{ comment.message }}

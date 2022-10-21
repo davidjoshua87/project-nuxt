@@ -2,7 +2,7 @@
   <div class="bg-white shadow-sm p-5 sticky">
       <div class="flex gap-5 items-center" style="flex: 0 0 auto;">
           <div>
-              <nuxt-img :src="user.userImage" class="max-w-full" width="52" height="52" provider="cloudinary"/>
+              <nuxt-img :src="user.userImage" class="max-w-full rounded-full" width="52" height="52" provider="cloudinary"/>
           </div>
           <div>
               <a :href="'/account/' + user.userId">
@@ -17,11 +17,11 @@
 </template>
 <script>
   export default {
-      props : {
-          user : {
-              type : Object,
-              required: true,
+    props: {
+      user: {
+        type: Object,
+        required: true,
       }
-      }
+    }
   }
 </script>

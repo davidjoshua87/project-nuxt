@@ -66,8 +66,6 @@ export default {
             })
           );
 
-          console.log(result, '=====user');
-
           if (result.json.user.length > 0) {
             alert("Login Success");
             Cookie.set("idToken", result.json.user[0].userId)
